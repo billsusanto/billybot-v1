@@ -127,7 +127,6 @@ export default function Home() {
               .start()
           }}
         />
-        {/* 👋 */}
       </div>
       <p className="text-left mt-6 text-gray-500 text-xl">
         This is Billybot, my AI assistant who knows everything about me. 
