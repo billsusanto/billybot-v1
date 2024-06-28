@@ -1,113 +1,172 @@
-import Image from "next/image";
+'use client';
+
+import { useChat } from 'ai/react';
+import { SendHorizonalIcon } from 'lucide-react';
+import { FormEvent, useState, useEffect, useRef } from 'react';
+import Typewriter from "typewriter-effect";
+import emailjs from '@emailjs/browser';
+import "./styles/chatAnimations.css";
 
 export default function Home() {
+  const { messages, input, setInput, handleInputChange, handleSubmit } =
+    useChat({
+      api: '/api/billybot/completion',
+    });
+    
+    const stripFormatting = (text: string): string => {
+      return text.replace(/(\*)/g, '');
+    };
+    
+  const messagesList = messages.map((message) => (
+    <div
+      key={message.id}
+      className={`my-2 text-md py-4 px-8 rounded-lg w-fit ${
+        message.role === 'user'
+          ? 'ml-auto bg-blue-100 text-blue-900 slide-in-right'
+          : 'mr-auto mb-10 bg-gray-100 text-gray-900 slide-in-left'
+      }`}
+      style={{ whiteSpace: 'pre-line' }}
+    >
+      {stripFormatting(message.content)}
+    </div>
+  ));
+
+  const [chatHistory, setChatHistory] = useState('');
+  const [buttonsVisible, setButtonsVisible] = useState(true);
+  const [formMarginTop, setFormMarginTop] = useState('mt-10');
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    const updatedChatHistory = messages
+      .map((message) => {
+        return `${message.role === 'user' ? 'User' : 'Billybot'}: ${message.content}`;
+      })
+      .join('\n');
+    setChatHistory(updatedChatHistory);
+  }, [messages]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = '';
+      console.log(chatHistory);
+
+      if (chatHistory !== '') {
+        emailjs.send(
+          'service_fb2fl4g',
+          'template_j8okxwr',
+          {
+            from_name: 'Billybot',
+            to_name: 'Bill',
+            from_email: 'billsusanto01@gmail.com',
+            to_email: 'billsusanto01@gmail.com',
+            message: chatHistory
+          },
+          'lQgRj9ZyE7KvismHf'
+        ).then((result) => {
+          console.log('Email successfully sent!', result.text);
+        }, (error) => {
+          console.error('Failed to send email:', error.text);
+        });
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [chatHistory]);
+
+  const customHandleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit(e);
+    setInput('');
+  };
+
+  const exampleQuestions = [
+    "Tell me more about Bill's experiences.",
+    "What are Bill's vision and mission?",
+    "Is Bill currently looking for an internship?",
+    "Tell me something interesting!"
+  ];
+
+  const handleExampleClick = (question: string) => {
+    setInput(question);
+    setButtonsVisible(false);
+    setFormMarginTop('mt-auto');
+    setTimeout(() => {
+      if (formRef.current) {
+        formRef.current.dispatchEvent(
+          new Event('submit', { cancelable: true, bubbles: true })
+        );
+      }
+    }, 0);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <div className="flex flex-col mt-14 items-center w-[100%] h-[80vh]">
+      <div className="flex justify-center items-center text-center text-4xl">
+        <span>Hey there, I&apos;m&nbsp;</span>
+        <Typewriter
+          options={{ loop: true }}
+          onInit={(typewriter) => {
+            typewriter
+              .typeString("Bill Susanto ")
+              .pauseFor(200)
+              .deleteAll()
+              .typeString("an aspiring Software Developer")
+              .pauseFor(200)
+              .deleteAll()
+              .typeString("ready to Innovate and Inspire")
+              .pauseFor(200)
+              .deleteAll()
+              .typeString("committed to Learning and Growth")
+              .pauseFor(200)
+              .deleteAll()
+              .start()
+          }}
         />
+        {/* 👋 */}
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <p className="text-left mt-6 text-gray-500 text-xl">
+        This is Billybot, my AI assistant who knows everything about me. 
+      </p>
+      <p className="text-left mt-0 text-gray-500 text-xl">
+        Feel free to ask it anything you like, I&apos;m sure it&apos;s up to the task
+        🔥
+      </p>
+      <div className="mt-4 w-[60%] text-md">{messagesList}</div>
+      {buttonsVisible && (
+        <div className="mt-4 w-[60%] flex flex-wrap gap-2 mt-auto justify-center">
+          {exampleQuestions.map((question, index) => (
+            <button
+              key={index}
+              onClick={() => handleExampleClick(question)}
+              className="py-2 px-4 bg-blue-500 text-white rounded-lg"
+            >
+              {question}
+            </button>
+          ))}
+        </div>
+      )}
+      <form
+        ref={formRef}
+        className={`flex py-4 px-8 w-[60%] border-2 border-black rounded-xl mb-0 ${formMarginTop}`}
+        onSubmit={customHandleSubmit}
+      >
+        <input
+          name="prompt"
+          className="h-8 w-[100%] text-black border-black focus:outline-none"
+          value={input}
+          onChange={handleInputChange}
+          id="prompt"
+          placeholder='Ask any questions about Bill...'
+        />
+        <button type="submit">
+          <SendHorizonalIcon />
+        </button>
+      </form>
+    </div>
   );
 }
