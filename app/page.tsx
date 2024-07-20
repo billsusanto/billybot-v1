@@ -107,26 +107,29 @@ export default function Home() {
   return (
     <div className="flex flex-col mt-14 items-center w-[100%] h-[80vh]">
       <div className="flex justify-center items-center text-center text-4xl">
-        <span>Hey there, I&apos;m&nbsp;</span>
-        <Typewriter
-          options={{ loop: true }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString("Bill Susanto ")
-              .pauseFor(200)
-              .deleteAll()
-              .typeString("an aspiring Software Developer")
-              .pauseFor(200)
-              .deleteAll()
-              .typeString("ready to Innovate and Inspire")
-              .pauseFor(200)
-              .deleteAll()
-              .typeString("committed to Learning and Growth")
-              .pauseFor(200)
-              .deleteAll()
-              .start()
-          }}
-        />
+        <span className='hidden sm:block'>Hey there, I&apos;m&nbsp;</span>
+        <div className='hidden sm:block'>
+          <Typewriter
+            options={{ loop: true }}
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("Bill Susanto ")
+                .pauseFor(200)
+                .deleteAll()
+                .typeString("an aspiring Software Developer")
+                .pauseFor(200)
+                .deleteAll()
+                .typeString("ready to Innovate and Inspire")
+                .pauseFor(200)
+                .deleteAll()
+                .typeString("committed to Learning and Growth")
+                .pauseFor(200)
+                .deleteAll()
+                .start()
+            }}
+          />
+        </div>
+        <span className="block sm:hidden">Hey there!</span>
       </div>
       <p className="text-left mt-6 text-gray-500 text-xl">
         This is Billybot, my AI assistant who knows everything about me. 
@@ -135,9 +138,9 @@ export default function Home() {
         Feel free to ask it anything you like, I&apos;m sure it&apos;s up to the task
         🔥
       </p>
-      <div className="mt-4 w-[60%] text-md">{messagesList}</div>
+      <div className="mt-4 w-[80%] sm:w-[60%] text-md">{messagesList}</div>
       {buttonsVisible && (
-        <div className="mt-4 w-[60%] flex flex-wrap gap-2 mt-auto justify-center">
+        <div className="mt-4 w-[60%] sm:w-[60%] flex flex-wrap gap-2 mt-auto justify-center">
           {exampleQuestions.map((question, index) => (
             <button
               key={index}
@@ -151,7 +154,7 @@ export default function Home() {
       )}
       <form
         ref={formRef}
-        className={`flex py-4 px-8 w-[60%] border-2 border-black rounded-xl mb-0 ${formMarginTop}`}
+        className={`flex py-4 px-8 w-[80%] sm:w-[60%] border-2 border-black rounded-xl mb-0 ${formMarginTop}`}
         onSubmit={customHandleSubmit}
       >
         <input
