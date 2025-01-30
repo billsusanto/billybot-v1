@@ -1,95 +1,88 @@
-Bill Susanto
-Phone: +1 (619) 636 - 6280 Email: billsusanto01@gmail.com | bsusant1@uci.edu Location: Irvine, California
+## Bill Susanto
+
+Phone: +1 (619) 636 - 6280 Email: bsusant1@uci.edu Location: Irvine, California
+
 LinkedIn: https://www.linkedin.com/in/bill-susanto/ Github: https://github.com/billsusanto
 
 EDUCATION
 
-University of California, Irvine, CA
-Bachelor’s Degree in Computer Science
+University of California, Irvine, CA GPA: 3.4/ 4.0
+
+Bachelor’s Degree in Computer Science Expected Graduation: June 2025
 
 TECHNICAL SKILLS
 
-● Technologies: Python, C++, C#, Java, Javascript, Golang
-● Frameworks: React.js, Node.js, Express.js, Reflex
-● Tools: Github, Visual Studio Code, Ubuntu, Clion, Roblox, Unity
+Technologies: Python, C++, C#, Java, Javascript, Golang Databases: MySQL, Supabase, Firebase, MongoDB, PostgreSQL
 
-WORK EXPERIENCE
+Frameworks: Next.js, React.js, Node.js, Express.js, Reflex, Flask ML/AI: Pandas, NumPy, Scikit-learn
 
-GPA: 3.43/ 4.0
-Expected Graduation: June 2025
+## WORK EXPERIENCE
 
-Pasadena, California
-theCoderSchool
-Coding Mentor
-August 2022 - October 2022
-● Achieved exceptional results by mentoring students through summer coding programs such as Python, C++ and C#, enabling
+Pilates ReBar | https://pilatesrebar.com/ Jakarta, Indonesia
 
-immersive hands-on learning experiences.
+Software Engineer October 2021 - October 2022
 
-● Spearheaded the development of innovative projects within Unity and Roblox Studio, elevating student engagement and
+●Built a responsive web platform with Next.js and PostgreSQL for seamless performance and scalable data management.
 
-advancing coding proficiency.
+●Integrated third-party APIs and services to enhance functionality, including payment systems and scheduling features.
 
-International Student Center
-International Peer Leader
-● Employed problem-solving skills to provide timely solutions, optimizing a smooth and successful experience for
+theCoderSchool Pasadena, California
 
-Pasadena, California
-August 2022 - May 2023
+## Coding Mentor August 2022 - October 2022
 
-international students.
+●Mentored students in Python, C++, and C#, achieving a 95% satisfaction rate and enhancing their coding skills through immersive, hands-on projects.
 
-● Acquired proficiency in leadership, effective communication, and teamwork, enhancing the ability to nurture the next
+●Spearheaded the development of projects in Unity and Roblox Studio, increasing student engagement by 40% and improving coding proficiency by 30%.
 
-generation of leaders.
+## LEADERSHIP
 
-PROJECTS
+PERMIASPasadena, CaliforniaPasadena, California Tech DirectorSeptember 2022 - August 2023
 
-Website Portfolio | https://billsusanto.github.io/
-● Overcame challenges in crafting an interactive portfolio using Javascript, React.js and Node.js, showcasing my journey
+●Designed and created an interactive social website using React, fostering a vibrant online community for members.
 
-Los Angeles, California
+●Pioneered the development of interactive surveys for diverse club events, enhancing feedback collection.
 
-through creative coding and innovative projects.
+International Student CenterPasadena, CaliforniaPasadena, California Student LeaderAugust 2022 - May 2023
 
-● Established a collaborative platform for discussions, identifying opportunities, and scheduling meetings.
+●Employed problem-solving skills to provide timely solutions, optimizing a successful experience for international students.
 
-Billybot | https://billybot-iota.vercel.app/
-● Designed and developed an AI chatbot, offering information about my achievements and contributions.
-● Back-end built using Express.js leveraging OpenAI’s API to create an intelligent chatbot.
+●Acquired proficiency in leadership, effective communication, and teamwork to nurture the next generation of leaders.
 
-Los Angeles, California
+## PROJECTS
 
-CocoaPods | https://cocoapods.reflex.run/
-● Leveraged Reflex framework to enhance CocoaPods' UI/UX, resulting in streamlined navigation.
-● Utilized prompt engineering alongside Gemini AI to parse through podcast content, facilitating personalized
+Coba | https://coba-billsusantos-projects.vercel.app/projectsIrvine, CaliforniIrvine, California ●Spearheaded the development of a collaborative matchmaking platform designed to enhance student project engagement.
 
-Los Angeles, California
+●Utilized modern web technologies, including Next.js and Firebase, to build a responsive and scalable platform.
 
-recommendations.
+## Billybot | https://billybot-v1.vercel.app/ Los Angeles, California
 
-● Integrated Supabase for database management, optimizing data storage and retrieval processes.
+●Designed and developed an AI chatbot using Next.js and OpenAI API, providing detailed information about my achievements and contributions.
 
-LEADERSHIP
+●The chatbot was integrated with real-time data handling, increasing user interaction by 25%.
 
-Pasadena, California
-PERMIAS
-Tech Director
-September 2022 - August 2023
-● Designed and created an interactive social website using HTML and CSS, fostering a vibrant online community for members.
-● Pioneered the development of interactive surveys for diverse club events, enhancing feedback collection.
+Minesweeper AI | https://minesweeper-ai-billsusantos-projects.vercel.app/ Irvine, California
 
-Singapore’s National Service
-Commando Specialist
-● Led initiatives that secured the prestigious recognition of "2021 Best Combat Unit" within the entire Singapore Armed
+●Built a Minesweeper AI solver in Next.js with dynamic board generation and real-time AI gameplay.
 
-Singapore, Singapore
-January 2020 - November 2021
+●Engineered an AI algorithm that strategically optimizes uncovering safe tiles and flagging mines, achieving 65% win rate.
 
-Forces.
+Goober | https://github.com/billsusanto/Goober Irvine, California
 
-● Demonstrated exceptional leadership as Company Sergeant Major, ensuring rigorous adherence to company discipline and
+●Engineered a scalable search engine capable of processing and indexing 5500 web pages for efficient information retrieval.
 
-routines.
+●Achieved an impressive query speed of 0.026 seconds, ensuring rapid and efficient retrieval of search results.
 
-
+## TheraAI | https://github.com/billsusanto/TheraAI Berkeley, California
+
+●Engineered the front-end interface using React, Streamlit, and Figma, creating an intuitive and visually appealing user experience for real-time interaction.
+
+●Integrated OpenCV with the HUME API on the backend using Flask, enabling real-time emotion detection and response through visual inputs.
+
+## Website Portfolio | https://billsusanto.github.io/ Los Angeles, California
+
+●Overcame challenges in crafting an interactive portfolio using Javascript, React.js and Node.js, showcasing my journey through creative coding and innovative projects.
+
+●Established a collaborative platform for discussions, identifying opportunities, and scheduling meetings.
+
+
+
